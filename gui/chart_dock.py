@@ -4,11 +4,10 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-from binance.client import Client
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QToolBar, QAction, QToolButton, QSizePolicy, QWidget,
                              QDockWidget, QVBoxLayout, QPushButton, QHBoxLayout, QLabel, QLineEdit, QListWidget,
                              QListWidgetItem, QComboBox)
-from PyQt5.QtWebEngineWidgets import QWebEngineView
+
 from PyQt5.QtCore import Qt, QPoint, QUrl
 from PyQt5.QtGui import QIcon
 
