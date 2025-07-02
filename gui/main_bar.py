@@ -3,11 +3,11 @@ import os
 import json
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QToolBar, QAction, QToolButton, QSizePolicy,
-    QWidget, QDockWidget, QVBoxLayout, QPushButton, QLabel, QMenu, QWidgetAction, 
-    QInputDialog, QMessageBox, QFileDialog, QHBoxLayout, QCheckBox
+    QWidget, QPushButton, QMenu, QWidgetAction, 
+    QMessageBox, QFileDialog
 )
 from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import Qt, QPoint, QSize, QRect, QByteArray
+from PyQt5.QtCore import Qt, QPoint, QRect, QByteArray
 
 from gui.connections import ConnectionsDock
 from gui.menubar_dock import MenuDock
@@ -40,19 +40,11 @@ class MainBar(QMainWindow):
             QMainWindow.GroupedDragging
         )
 
-        # # ✅ Now create your docks
-        # #self.menu_dock = MenuDock(self)  # ✅ Pass MainBar instance
-        # self.menu_dock = MenuDock(self)
-        # self.addDockWidget(Qt.LeftDockWidgetArea, self.menu_dock)
-        # self.menu_dock.setFloating(True)
-        # self.menu_dock.show()
-
         
         self.toolbar = QToolBar()
         self.toolbar.setMovable(False)
         self.addToolBar(self.toolbar)
-        
-        #num_dock = NumberDock()
+    
 
         self.actions = [
             ("Menu", "assets/icons/menu.png", self.toggle_menu_dock),
@@ -116,9 +108,6 @@ class MainBar(QMainWindow):
         else:
                     print(f"Warning: Icon not found: {icon_path}")
 
-        # spacer = QWidget()
-        # spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-        # self.toolbar.addWidget(spacer)
 
         self._add_window_controls()
 
@@ -159,47 +148,6 @@ class MainBar(QMainWindow):
         add_control("assets/icons/minimize.png", "Minimize", self.showMinimized)
         self.maximize_btn = add_control("assets/icons/maximize.png", "Maximize", self.toggle_maximize_restore)
         add_control("assets/icons/close.png", "Close", self.close)
-
-    # def toggle_menu_dock(self):
-    #     if not self.menu_dock:
-    #         self.menu_dock = QDockWidget("Menu", self)
-    #         self.menu_dock.setAllowedAreas(Qt.LeftDockWidgetArea | Qt.RightDockWidgetArea)
-    #         self.menu_dock.setFloating(True)
-
-    #         content = QWidget()
-    #         layout = QVBoxLayout(content)
-    #         for label in ["Option 1", "Option 2", "Option 3"]:
-    #             btn = QPushButton(label)
-    #             btn.setStyleSheet("""
-    #                 QPushButton {
-    #                     background-color: transparent;
-    #                     border: none;
-    #                     padding: 10px;
-    #                     text-align: left;
-    #                     font-size: 14px;
-    #                 }
-    #                 QPushButton:hover {
-    #                     background-color: #e0e0e0;
-    #                     border-radius: 3px;
-    #                 }
-    #                 QPushButton:pressed {
-    #                     background-color: #d0d0d0;
-    #                 }
-    #             """)
-    #             layout.addWidget(btn)
-    #         self.menu_dock.setWidget(content)
-    #         self.addDockWidget(Qt.LeftDockWidgetArea, self.menu_dock)
-    #     self.menu_dock.setVisible(not self.menu_dock.isVisible())
-
-    # def toggle_menu_dock(self):
-    #     # if not self.menu_dock:
-    #     #     self.menu_dock = MenuDock(self)
-    #     #     self.addDockWidget(Qt.LeftDockWidgetArea, self.menu_dock)
-    #     # self.menu_dock.setVisible(not self.menu_dock.isVisible())
-    #     dock = MenuDock(self)
-    #     self.addDockWidget(Qt.RightDockWidgetArea, dock)
-    #     dock.show()
-    #     self.number_docks.append(dock)
 
 
     def _clear_number_docks(self):
@@ -261,14 +209,6 @@ class MainBar(QMainWindow):
             self.menu_dock.move(150, 100)     # Optional default position
         self.menu_dock.setVisible(not self.menu_dock.isVisible())
 
-    #here we heave great minimal working code
-    # #****
-    # def create_number_dock(self):
-    #     dock = NumberDock(self)
-    #     self.addDockWidget(Qt.RightDockWidgetArea, dock)
-    #     dock.show()
-    #     self.number_docks.append(dock)
-    #***
 
     def create_number_dock(self, dock_id=None):
         dock = NumberDock(self)
@@ -283,35 +223,8 @@ class MainBar(QMainWindow):
         dock.show()
         self.number_docks.append(dock)
 
-
-    # def create_number_dock(self):
-    #     dock = NumberDock(self)
-
-    #     dock.setMinimumWidth(300)                      # Set a minimum width
-    #     dock.resize(400, dock.sizeHint().height())     # Set default width
-
-    #     dock.setFloating(True)
-    #     dock.move(20, 40)
-    #     dock.show()
-
-        # # ✅ Center the dock on the screen
-        # screen = QApplication.primaryScreen().availableGeometry()
-        # dock_rect = dock.frameGeometry()
-        # x = screen.x() + (screen.width() - dock_rect.width()) // 2
-        # y = screen.y() + (screen.height() - dock_rect.height()) // 2
-        # dock.move(x, y)
-
         self.number_docks.append(dock)
 
-
-
-    # def create_connection_dock(self):
-    #     #connection = ConnectionsDock(self)
-    #     dock = ConnectionsDock(main_window)
-    #     main_window.addDockWidget(Qt.LeftDockWidgetArea, dock)
-    #     #self.addDockWidget(Qt.RightDockWidgetArea, connection)
-    #     #connection.show()
-    #     #self.number_docks.append(connection)
 
     def create_connection_dock(self):
         dock = ConnectionsDock(self)
@@ -482,12 +395,3 @@ class MainBar(QMainWindow):
         except Exception as e:
             QMessageBox.warning(self, "Error", f"Error loading layout:\n{e}")
 
-
-
-
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = MainBar()
-    window.show()
-    sys.exit(app.exec_())

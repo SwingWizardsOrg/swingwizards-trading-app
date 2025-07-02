@@ -1,9 +1,7 @@
 import sys
 from gui.main_bar import MainBar
-from gui.splash import SplashScreen  # This is correct
-from PyQt5.QtWidgets import QApplication, QMainWindow, QToolBar, QAction, QToolButton, QSizePolicy, QWidget, QDockWidget, QVBoxLayout, QPushButton
-from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import Qt, QPoint
+from gui.splash import SplashScreen  
+from PyQt5.QtWidgets import QApplication
 
 
 def check_splash_done(splash, window):
@@ -16,7 +14,7 @@ def main():
     app = QApplication(sys.argv)
     
     # Show splash screen
-    splash = SplashScreen()  # Create instance directly
+    splash = SplashScreen()  
     splash.show()
     
     # Initialize mainbar

@@ -1,14 +1,12 @@
 # gui/menubar_dock.py
 from PyQt5.QtWidgets import (
-    QDockWidget, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QFrame, QMessageBox, 
-    QScrollArea
+    QDockWidget, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QFrame, QScrollArea
 )
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt, QSize
 import os
 
 from gui.chart_dock import ChartDockWidget
-from gui.connections import ConnectionsDock
 from gui.number_dock import NumberDock
 
 
@@ -64,17 +62,9 @@ class MenuDock(QDockWidget):
         layout.setContentsMargins(10, 10, 10, 10)
         layout.setSpacing(15)
 
-        # layout.addWidget(self.create_section("Charts", [
-        #     ("   Market Watch", "flow.png", "Ctrl+M", self.show_market_watch),
-        #     ("Data Window", "data_window.png", "Ctrl+D"),
-        #     ("Navigator", "navigator.png", self.create_number_dock)
-        # ]))
-
 
         layout.addWidget(self.create_section("Test", [
             ("   Number Dock", "number.png", "Ctrl+M", self.create_number_dock),
-            # ("  Chart Window", "data_window.png", "Ctrl+D", self.create_chart_dock),
-            # ("Navigator", "navigator.png", self.create_number_dock)
         ]))
 
 
@@ -135,20 +125,9 @@ class MenuDock(QDockWidget):
 
         ]))
 
-#TREE MAPS
-# PERFOMANCE - PERCENTAGE MOVES, GAPS
-# order entry tools
-# trader tools - watchlist
-# journaling tools - trade journal, trade stats, trade analytics
-# backtesting tools - backtest, strategy builder, strategy tester
-# screener tools - stock screener, options screener, futures screener, crypto screener
-
-#TICKER INFOR --- NEWS, FUNDAMENTALS, 
-# ACCOUNT DETAILS - BALANCE, PNL, POSITIONS, ORDERS, TRADES
 
 
         layout.addStretch()
-        # self.setWidget(container)
         scroll_area = QScrollArea()
         scroll_area.setWidgetResizable(True)
         scroll_area.setWidget(container)
@@ -216,14 +195,6 @@ class MenuDock(QDockWidget):
 
         return widget
 
-    # def show_market_watch(self):
-    #     QMessageBox.information(self, "Market Watch", "3")
-
-    # def create_connection_dock(self):
-    #     dock = ConnectionsDock(self)
-    #     self.addDockWidget(Qt.LeftDockWidgetArea, dock)
-    #     dock.show()
-    #     self.number_docks.append(dock)
     
     def create_number_dock(self):
         dock = NumberDock(self.main_window)  # pass main_window as parent
