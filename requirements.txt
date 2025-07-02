@@ -1,0 +1,8 @@
+PyQt5==5.15.11
+numpy==2.3.1
+pandas==2.3.0
+plotly==6.2.0
+binance==0.3.52
+cryptography==45.0.4
+requests == 2.32.4
+aiohttp == 3.12.13
