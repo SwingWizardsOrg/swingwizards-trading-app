@@ -24,7 +24,7 @@ We recommend using a virtual environment to manage dependencies.
   pip install -r requirements.txt
   python3 main.py
   ```
-  On  Mac:
+  Mac:
 
    ```
    python3 -m venv venv
