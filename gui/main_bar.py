@@ -12,7 +12,7 @@ from PyQt5.QtCore import Qt, QPoint, QSize, QRect, QByteArray
 from gui.connections import ConnectionsDock
 from gui.menubar_dock import MenuDock
 from gui.number_dock import NumberDock
-from tet_code import LayoutManagerWidget
+from gui.layoutsdropdown import LayoutManagerWidget
 
 class MainBar(QMainWindow):
     def __init__(self):
